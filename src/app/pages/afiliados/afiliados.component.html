@@ -1,0 +1,24 @@
+<div >
+    <select class="custom-select" [(ngModel)]="buscarporlugar" >
+        <option value="">Seleccionar lugar</option>
+        <option *ngFor="let zonas of afi.zonas | filtrocinco | filtrosiete" value="{{zonas.lugar}}">{{zonas.lugar}}</option>        
+    </select>
+    <br> <br>
+    <select class="custom-select" [(ngModel)]="buscarporcategoria" >
+      <option value="">Categorías</option>
+      <option *ngFor="let categorias of afi.categorias | filtrocuatro | filtroseis" value="{{categorias.categorias}}">{{categorias.categorias}}</option>        
+    </select>
+    <br><br>
+    <section class="ae-container-fluid ae-container-fluid--inner rk-portfolio animated fadeInDown">        
+        <div class="ae-masonry ae-masonry-md-2 ae-masonry-xl-4">        
+            <div *ngFor="let af of afi.afiliados | filtro:buscarporlugar | filtrodos:buscarporcategoria | filtrotres">
+            <a [routerLink]="['/negocio', af.cod]"  class="rk-item ae-masonry__item"><img src="../../../assets/productos/{{ af.url }}.jpg" alt="">                
+                <div class="ae-grid__item au-xs-ta-center">
+                    <h2>{{ af.lugar }}</h2>
+                    <p>{{ af.categoria }}</p>
+                </div>
+            </a>
+            </div>                         
+        </div>    
+    </section>
+</div>
